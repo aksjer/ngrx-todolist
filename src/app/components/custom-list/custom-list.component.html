@@ -1,0 +1,17 @@
+<md-list>
+  <md-list-item>
+    <app-search (searchEvent)="search($event)"></app-search>
+  </md-list-item>
+  <md-list-item *ngFor="let item of items" [mdTooltip]="'id : ' + item.id">
+    <div class="container" fxLayout="row" fxLayoutAlign="space-between center">
+      <div>{{item.text}}</div>
+      <div>
+        <button md-icon-button [mdMenuTriggerFor]="options"><md-icon>more_vert</md-icon></button>
+        <md-menu #options>
+          <button md-menu-item (click)="action('edit', item.id)">Edit</button>
+          <button md-menu-item (click)="action('delete', item.id)">Delete</button>
+        </md-menu>
+      </div>
+    </div>
+  </md-list-item>
+</md-list>

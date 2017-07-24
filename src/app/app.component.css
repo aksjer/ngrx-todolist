@@ -1,0 +1,14 @@
+.loadingBar {
+  height: 1px;
+  opacity: 0;
+}
+
+.showLoadingBar {
+  opacity: 1 !important;
+}
+
+.addBtn {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
