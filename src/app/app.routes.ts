@@ -4,7 +4,7 @@ import { TodoPageComponent } from './containers/todo-page/todo-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomePageComponent, data: { title: 'Home', addBtnIcon: 'add' } },
-  { path: 'todo', component: TodoPageComponent, data: { title: 'Todo', addBtnIcon: 'note_add' } },
+  { path: 'home', component: HomePageComponent },
+  { path: 'todo', component: TodoPageComponent },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];

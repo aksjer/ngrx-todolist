@@ -14,13 +14,11 @@ export class HomePageComponent implements OnInit {
 
 
   constructor(
-    private _activatedRoute: ActivatedRoute,
     private _store: Store<fromRoot.State>
   ) { }
 
   ngOnInit() {
-    const icon = this._activatedRoute.snapshot.data['addBtnIcon'];
-    this._store.dispatch(new fromLayout.AddBtnIconChangeAction(icon));
+    this._store.dispatch(new fromLayout.AddBtnIconChangeAction('add'));
   }
 
 }

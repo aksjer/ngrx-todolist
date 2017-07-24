@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem } from './models/menuItem';
 import { Observable } from 'rxjs/Observable';
 import * as fromRoot from './reducers';
 import { Store } from '@ngrx/store';
-import { MenuOpenAction, MenuCloseAction, SnackBarCloseAction } from './actions/layout';
+import * as fromLayout from './actions/layout';
 import { MdSnackBar } from '@angular/material';
 import { SnackbarModel } from './models/snackbar';
-import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +25,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private _store: Store<fromRoot.State>,
-    private _mdSnackBar: MdSnackBar
+    private _mdSnackBar: MdSnackBar,
+    private _activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -37,17 +38,21 @@ export class AppComponent implements OnInit {
         this._mdSnackBar
           .open(snackbar.text, null, { duration: 4000 })
           .afterDismissed()
-          .subscribe(() => this._store.dispatch(new SnackBarCloseAction()));
+          .subscribe(() => this._store.dispatch(new fromLayout.SnackBarCloseAction()));
       }
     });
   }
 
   menuOpen() {
-    this._store.dispatch(new MenuOpenAction());
+    this._store.dispatch(new fromLayout.MenuOpenAction());
   }
 
   menuClose() {
-    this._store.dispatch(new MenuCloseAction());
+    this._store.dispatch(new fromLayout.MenuCloseAction());
+  }
+
+  add() {
+    debugger
   }
 
 }

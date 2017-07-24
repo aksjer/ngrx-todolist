@@ -19,7 +19,6 @@ export class TodoPageComponent implements OnInit {
   todos$: Observable<Todo[]>;
 
   constructor(
-    private _activatedRoute: ActivatedRoute,
     private _store: Store<fromRoot.State>
 
   ) { }
@@ -27,8 +26,7 @@ export class TodoPageComponent implements OnInit {
   ngOnInit() {
     this.todos$ = this._store.select(fromRoot.getTodos);
     this._store.dispatch(new fromTodo.TodoLoadAction());
-    const icon = this._activatedRoute.snapshot.data['addBtnIcon'];
-    this._store.dispatch(new fromLayout.AddBtnIconChangeAction(icon));
+    this._store.dispatch(new fromLayout.AddBtnIconChangeAction('note_add'));
   }
 
   search(term: string) {
