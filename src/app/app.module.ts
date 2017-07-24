@@ -15,7 +15,8 @@ import {
   MdProgressSpinnerModule,
   MdSlideToggleModule,
   MdProgressBarModule,
-  MdTooltipModule
+  MdTooltipModule,
+  MdSnackBarModule
 } from '@angular/material';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -57,6 +58,7 @@ import { CustomListComponent } from './components/custom-list/custom-list.compon
     MdSlideToggleModule,
     MdProgressBarModule,
     MdTooltipModule,
+    MdSnackBarModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
     FlexLayoutModule

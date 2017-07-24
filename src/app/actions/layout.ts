@@ -5,6 +5,8 @@ export const MENU_CLOSE = '[Menu] Close';
 export const LOADING_BAR_ON = '[Loading Bar] On';
 export const LOADING_BAR_OFF = '[Loading Bar] Off';
 export const ADD_BTN_ICON_CHANGE = '[Add Button Icon] Change';
+export const SNACKBAR_OPEN = '[Snack Bar] Open';
+export const SNACKBAR_CLOSE = '[Snack Bar] Close';
 
 export class MenuOpenAction implements Action {
   readonly type = MENU_OPEN;
@@ -27,8 +29,19 @@ export class AddBtnIconChangeAction implements Action {
   constructor(public payload: string) { }
 }
 
+export class SnackBarOpenAction implements Action {
+  readonly type = SNACKBAR_OPEN;
+  constructor(public payload: string) { }
+}
+
+export class SnackBarCloseAction implements Action {
+  readonly type = SNACKBAR_CLOSE;
+}
+
 export type Action = MenuOpenAction
   | MenuCloseAction
   | LoadingBarOnAction
   | LoadingBarOffAction
-  | AddBtnIconChangeAction;
+  | AddBtnIconChangeAction
+  | SnackBarOpenAction
+  | SnackBarCloseAction;

@@ -42,9 +42,8 @@ export class TodoService {
   }
 
   delete(id: string) {
-    debugger
     FAKE_TODOS = FAKE_TODOS.filter((todo: Todo) => todo.id !== id);
-    return id;
+    return Observable.of(id);
   }
 
   search(term: string): Observable<Todo[]> {

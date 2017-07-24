@@ -3,7 +3,10 @@ import { MenuItem } from './models/menuItem';
 import { Observable } from 'rxjs/Observable';
 import * as fromRoot from './reducers';
 import { Store } from '@ngrx/store';
-import { MenuOpenAction, MenuCloseAction } from './actions/layout';
+import { MenuOpenAction, MenuCloseAction, SnackBarCloseAction } from './actions/layout';
+import { MdSnackBar } from '@angular/material';
+import { SnackbarModel } from './models/snackbar';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +24,22 @@ export class AppComponent implements OnInit {
   addBtnIcon$: Observable<string>;
 
   constructor(
-    private _store: Store<fromRoot.State>
+    private _store: Store<fromRoot.State>,
+    private _mdSnackBar: MdSnackBar
   ) { }
 
   ngOnInit() {
     this.menuOpened$ = this._store.select(fromRoot.getMenuState);
     this.loadingBar$ = this._store.select(fromRoot.getLoadingBarState);
     this.addBtnIcon$ = this._store.select(fromRoot.getAddBtnIcon);
+    this._store.select(fromRoot.getSnackbarState).subscribe((snackbar: SnackbarModel) => {
+      if (snackbar.opened) {
+        this._mdSnackBar
+          .open(snackbar.text, null, { duration: 4000 })
+          .afterDismissed()
+          .subscribe(() => this._store.dispatch(new SnackBarCloseAction()));
+      }
+    });
   }
 
   menuOpen() {

@@ -41,10 +41,10 @@ export class TodoEffects {
     .ofType(fromTodo.TODO_DELETE)
     .map(toPayload)
     .switchMap((id: string) => this._todoService.delete(id))
-    .map((id: string) => {
-      debugger
-      return new fromTodo.TodoDeleteSuccessAction(id)
-    });
+    .mergeMap((id: string) => [
+      new fromTodo.TodoDeleteSuccessAction(id),
+      new fromLayout.SnackBarOpenAction('Delete success!')
+    ]);
 
   @Effect()
   success$: Observable<Action> = this._actions$
